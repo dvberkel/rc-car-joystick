@@ -3,7 +3,7 @@
  * 10 units = 1mm
  */
 
-print();
+scale(1/10) print();
 
 module print() {
   offset = 120;
