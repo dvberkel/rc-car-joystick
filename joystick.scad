@@ -3,6 +3,16 @@
  * 10 units = 1mm
  */
 
+module joystick() {
+  union() {
+    axis();
+    cam();
+    ridge();
+    translate([0, 100, 0]) stick();
+    actuators();
+  }
+}
+
 module axis() {
   height = 115;
   diameter = 42;
@@ -36,6 +46,24 @@ module ring(h, r1, r2) {
   }
 }
 
-axis();
-cam();
-ridge();
+module stick() {
+  height = 158;
+  diameter = 48;
+  rotate([-90, 0, 0]) cylinder(h=height, d=diameter);
+}
+
+module actuators() {
+  radius=85;
+  union() {
+    translate([radius, 0, 0]) actuator();
+    translate([-radius, 0, 0]) actuator();
+  }
+}
+
+module actuator() {
+  height = 120;
+  diameter = 30;
+  translate([0, diameter/2, 0]) cylinder(h=height, d=diameter);
+}
+
+joystick();
