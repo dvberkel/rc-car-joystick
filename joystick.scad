@@ -3,6 +3,20 @@
  * 10 units = 1mm
  */
 
+print();
+
+module print() {
+  offset = 120;
+  bound = 600;
+  difference() {
+    union() {
+      translate([-offset, 0, 0]) rotate([0,   0, 0]) joystick();
+      translate([ offset, 0, 0]) rotate([0, 180, 0]) joystick();
+    };
+    translate([0, 0, -bound/2]) cube(bound, center=true);
+  }
+}
+
 module joystick() {
   union() {
     axis();
@@ -65,5 +79,3 @@ module actuator() {
   diameter = 30;
   translate([0, diameter/2, 0]) cylinder(h=height, d=diameter);
 }
-
-joystick();
