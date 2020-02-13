@@ -67,15 +67,16 @@ module stick() {
 }
 
 module actuators() {
-  radius=85;
+  radius = 85;
+  angle = 25;
   union() {
-    translate([radius, 0, 0]) actuator();
-    translate([-radius, 0, 0]) actuator();
+    rotate(angle) translate([radius, 0, 0]) actuator();
+    rotate(-angle) translate([-radius, 0, 0]) actuator();
   }
 }
 
 module actuator() {
   height = 120;
   diameter = 30;
-  translate([0, diameter/2, 0]) cylinder(h=height, d=diameter);
+  cylinder(h=height, d=diameter);
 }
